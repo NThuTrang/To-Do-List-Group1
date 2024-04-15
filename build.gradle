@@ -6,7 +6,7 @@ buildscript {
 plugins {
     id 'com.android.application' version '7.4.0' apply false
     id 'com.android.library' version '7.4.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.7.21' apply false  //1.9.10(run) or 1.7.21(code)
+    id 'org.jetbrains.kotlin.android' version '1.7.21' apply false  //1.9.10(run file) or 1.7.21(code)
     id 'androidx.navigation.safeargs.kotlin' version '2.5.2' apply false
 }
 
