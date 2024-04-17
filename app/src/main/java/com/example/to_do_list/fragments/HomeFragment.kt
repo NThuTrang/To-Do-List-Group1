@@ -49,6 +49,7 @@ class HomeFragment : Fragment(), AddToDoFragment.btnNextClickListener, Adapter.A
         dbRef = FirebaseDatabase.getInstance().reference.child("Tasks")
             .child(auth.currentUser?.uid.toString())
         navController = Navigation.findNavController(view)
+
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         list = mutableListOf()
@@ -87,6 +88,10 @@ class HomeFragment : Fragment(), AddToDoFragment.btnNextClickListener, Adapter.A
             addToDo = AddToDoFragment()
             addToDo!!.setListener(this)
             addToDo!!.show(childFragmentManager, AddToDoFragment.TAG)
+        }
+
+        binding.btnLogOut.setOnClickListener {
+            navController.navigate(R.id.action_homeFragment_to_signInFragment)
         }
     }
 
