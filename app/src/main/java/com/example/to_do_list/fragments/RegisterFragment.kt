@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -60,11 +61,22 @@ class RegisterFragment : Fragment() {
                                 Toast.makeText(context, it.exception.toString(), Toast.LENGTH_LONG)
                                     .show()
                         })
-                } else{
+                } else {
+                    val animation =
+                        AnimationUtils.loadAnimation(requireContext(), R.anim.vibrate_control)
+                    binding.password.startAnimation(animation)
+                    binding.rePassword.startAnimation(animation)
                     Toast.makeText(context, "Mật khẩu không khớp!", Toast.LENGTH_LONG).show()
                 }
-            } else
-                Toast.makeText(context, "Không được để trống bất kỳ trường nào!", Toast.LENGTH_LONG).show()
+            } else {
+                val animation =
+                    AnimationUtils.loadAnimation(requireContext(), R.anim.vibrate_control)
+                binding.email.startAnimation(animation)
+                binding.password.startAnimation(animation)
+                binding.rePassword.startAnimation(animation)
+                Toast.makeText(context, "Không được để trống bất kỳ trường nào!", Toast.LENGTH_LONG)
+                    .show()
+            }
         }
     }
 }

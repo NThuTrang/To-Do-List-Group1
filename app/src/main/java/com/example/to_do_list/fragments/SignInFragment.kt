@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -50,18 +51,35 @@ class SignInFragment : Fragment() {
             val password = binding.password.text.toString().trim()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
-                        OnCompleteListener {
-                            if (it.isSuccessful) {
-                                Toast.makeText(context, "Đăng nhập thành công!", Toast.LENGTH_LONG)
-                                    .show()
-                                navController.navigate(R.id.action_signInFragment_to_homeFragment)
-                            } else
-                                Toast.makeText(context,"Tên đăng nhập hoặc mật khẩu không đúng!", Toast.LENGTH_LONG)
-                                    .show()
-                        })
-            } else
-                Toast.makeText(context, "Không được để trống bất kỳ trường nào!", Toast.LENGTH_LONG).show()
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
+                    OnCompleteListener {
+                        if (it.isSuccessful) {
+                            Toast.makeText(context, "Đăng nhập thành công!", Toast.LENGTH_LONG)
+                                .show()
+                            navController.navigate(R.id.action_signInFragment_to_homeFragment)
+                        } else {
+                            val animation = AnimationUtils.loadAnimation(
+                                requireContext(),
+                                R.anim.vibrate_control
+                            )
+                            binding.email.startAnimation(animation)
+                            binding.password.startAnimation(animation)
+                            Toast.makeText(
+                                context,
+                                "Tên đăng nhập hoặc mật khẩu không đúng!",
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                        }
+                    })
+            } else {
+                val animation =
+                    AnimationUtils.loadAnimation(requireContext(), R.anim.vibrate_control)
+                binding.email.startAnimation(animation)
+                binding.password.startAnimation(animation)
+                Toast.makeText(context, "Không được để trống bất kỳ trường nào!", Toast.LENGTH_LONG)
+                    .show()
+            }
         }
     }
 
