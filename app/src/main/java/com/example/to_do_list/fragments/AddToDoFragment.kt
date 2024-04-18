@@ -67,10 +67,10 @@ class AddToDoFragment : DialogFragment() {
             if (toDo != null) {
                 if (toDo.isNotEmpty()) {
                     if (toDoData == null)
-                        listener.onSaveTask(toDo, binding.toDo)
+                        listener.onSaveTask(toDo, binding.toDo as TextInputEditText)
                     else {
                         toDoData?.task = toDo
-                        listener.onUpdateTask(toDoData!!, binding.toDo)
+                        listener.onUpdateTask(toDoData!!, binding.toDo as TextInputEditText)
                     }
                 } else
                     Toast.makeText(context, "Không được để trống tiêu đề!", Toast.LENGTH_LONG)
