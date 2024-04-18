@@ -49,7 +49,7 @@
                     android:inputType="textPersonName"
                     android:padding="12dp"
                     android:textColor="#707070"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </com.google.android.material.card.MaterialCardView>
 
